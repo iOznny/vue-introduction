@@ -16,8 +16,13 @@
             <!-- Options -->
             <PokemonOptions 
                 :pokemons="pokemons" 
-                @selection-pokemon="checkAnswer" 
+                @selection-pokemon="checkAnswer"
             />
+
+            <div v-if="showAnswer" class="fade-in">
+                <h2>{{ message }}</h2>
+                <button @click="newGame">Nuevo Juego</button>
+            </div>
         </div>        
     </div>
 </template>
@@ -38,7 +43,9 @@ export default {
         return {
             pokemons: [],
             pokemon: null,
-            showPokemon: false
+            showPokemon: false,
+            showAnswer: false,
+            message: ''
         }
     },
     methods: {
@@ -51,6 +58,20 @@ export default {
         },
         checkAnswer(pokemon_id) {
             this.showPokemon = true;
+            this.showAnswer = true;
+
+            if (pokemon_id === this.pokemon.id) {
+                this.message = `¡Correcto! ${ this.pokemon.name.toUpperCase() }`;
+            } else {
+                this.message = `Opps, era ${ this.pokemon.name.toUpperCase() }`;
+            }
+        },
+        newGame() {
+            this.showPokemon = false;
+            this.showAnswer = false;
+            this.pokemons = [];
+            this.pokemon = [];
+            this.mixPokemons();
         }
     },
     // Lifecycle Hook
