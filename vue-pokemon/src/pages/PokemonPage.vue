@@ -19,10 +19,10 @@
                 @selection-pokemon="checkAnswer"
             />
 
-            <div v-if="showAnswer" class="fade-in">
+            <template v-if="showAnswer" class="fade-in">
                 <h2>{{ message }}</h2>
                 <button @click="newGame">Nuevo Juego</button>
-            </div>
+            </template>
         </div>        
     </div>
 </template>
