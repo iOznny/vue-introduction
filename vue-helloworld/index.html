@@ -11,7 +11,12 @@
         <!-- Control Vue.js -->
         <div id="app">
             <h1>Hellow World</h1>
-            <p>{{ true ? 'Active' : 'Inactive' }}</p>
+            <blockquote>{{ true ? 'Active' : 'Inactive' }}</blockquote>
+            <blockquote>{{ message }}</blockquote>
+            <blockquote> - {{ author }}</blockquote>
+
+
+            <button v-on:click="changeQuote" >Change message</button>
         </div>
 
         <script src="app.js"></script>
