@@ -10,7 +10,14 @@
 
         <!-- Control Vue.js -->
         <div id="app">
-            <h1>Batman Quotes</h1>
+            <h1>Batman Quotes - <small>{{ newQuote }}</small></h1>
+            <input 
+                type="text" 
+                v-model="newQuote" 
+                v-on:keypress.enter="onAddQuote" 
+                placeholder="New quote">
+            
+            <hr>
 
             <ul>
                 <!-- V-For -->
@@ -20,16 +27,15 @@
                 </li>
 
                 <hr>
-                <br>
 
                 <!-- Destructuring Object -->
                 <li v-for="{ quote, author } of quotes">
                     <span>{{ quote }}</span>
-                    <blockquote> - {{ author  }}</blockquote>
+                    <!-- <blockquote v-if="author"> - {{ author  }}</blockquote> -->
+                    <blockquote v-show="author"> - {{ author  }}</blockquote>
                 </li>
 
                 <hr>
-                <br>
 
                 <!-- Index -->
                 <li v-for="(quote, index) of quotes">
@@ -38,7 +44,6 @@
                 </li>
 
                 <hr>
-                <br>
 
                 <!-- Index with Destructuring -->
                 <li v-for="({ quote, author }, index) of quotes">
