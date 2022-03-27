@@ -10,13 +10,42 @@
 
         <!-- Control Vue.js -->
         <div id="app">
-            <h1>Hellow World</h1>
-            <blockquote>{{ true ? 'Active' : 'Inactive' }}</blockquote>
-            <blockquote>{{ message }}</blockquote>
-            <blockquote> - {{ author }}</blockquote>
+            <h1>Batman Quotes</h1>
 
+            <ul>
+                <!-- V-For -->
+                <li v-for="quote of quotes">
+                    <span>{{ quote.quote }}</span>
+                    <blockquote> - {{ quote.author  }}</blockquote>
+                </li>
 
-            <button v-on:click="changeQuote" >Change message</button>
+                <hr>
+                <br>
+
+                <!-- Destructuring Object -->
+                <li v-for="{ quote, author } of quotes">
+                    <span>{{ quote }}</span>
+                    <blockquote> - {{ author  }}</blockquote>
+                </li>
+
+                <hr>
+                <br>
+
+                <!-- Index -->
+                <li v-for="(quote, index) of quotes">
+                    <span>{{ index + 1 }}. {{ quote.quote }}</span>
+                    <blockquote> - {{ quote.author  }}</blockquote>
+                </li>
+
+                <hr>
+                <br>
+
+                <!-- Index with Destructuring -->
+                <li v-for="({ quote, author }, index) of quotes">
+                    <span>{{ index + 1 }}. {{ quote }}</span>
+                    <blockquote> - {{ author  }}</blockquote>
+                </li>
+            </ul>
         </div>
 
         <script src="app.js"></script>
