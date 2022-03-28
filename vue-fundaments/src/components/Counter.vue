@@ -8,7 +8,6 @@
             <button @click="increment">+1</button>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -19,7 +18,10 @@
             start: {
                 type: Number,
                 required: true,
-                default: 10
+                default: 10,
+                validator: function(value) {
+                    return value >= 100
+                }
             }
         },
         data: function() {
