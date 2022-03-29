@@ -9,7 +9,7 @@
             <input type="text" v-model="question" placeholder="Hazme una pregunta">
             <p>Recuerda terminar con un signo de interrogación (?).</p>
 
-            <div>
+            <div v-if="validQuestion">
                 <h2>{{ question }}</h2>
                 <h1>{{ answer }}</h1>
             </div>
@@ -25,24 +25,29 @@ export default {
             question: null,
             answer: null,
             imagen: null,
+            validQuestion: false,
         }
     },    
     methods: {
-        async getAnswer() {
+        async getAnswer() {            
             this.answer = 'Pensando...'
 
-            const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json())        
-            this.answer = answer;
+            const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json()) 
+            console.log(answer);       
+            this.answer =  answer === 'yes' ? '¡Si!' : 
+                answer === 'no' ? '¡No!' : 'Tal vez';
             this.imagen = image;
         }
     },
     // Observable o Watcher
     watch: {
-        question(value, oldValue) {            
+        question(value, oldValue) {        
+            this.validQuestion = false;    
             if (!value.includes('?')) return
 
+            this.validQuestion = true;
             // TODO: Launch request to API
-            this.getAnswer()
+            this.getAnswer();
         }
     }
 }
