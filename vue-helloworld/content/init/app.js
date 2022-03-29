@@ -19,4 +19,4 @@ const app = Vue.createApp({
             this.message = this.message.toUpperCase();
         }
     }
-}).mount('#app')
+}).mount('#app');
