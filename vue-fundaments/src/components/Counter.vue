@@ -17,7 +17,7 @@ export default {
         title: String,
         start: {
             type: Number,
-            required: true,
+            // required: true,
             default: 10,
             validator: function(value) {
                 return value >= 100
