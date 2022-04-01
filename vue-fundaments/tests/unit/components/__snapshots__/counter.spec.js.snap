@@ -2,8 +2,9 @@
 
 exports[`Counter Component Match with the Snapshot 1`] = `
 <div>
-  <h2></h2>
+  <h2>Counter</h2>
   <p>10 <sup>2</sup> = 100</p>
-  <div><button>-1</button><button>+1</button></div>
+  <p data-test-counter="counter">10</p>
+  <div><button>+1</button><button>-1</button></div>
 </div>
 `;

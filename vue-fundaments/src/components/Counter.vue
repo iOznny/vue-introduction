@@ -2,10 +2,11 @@
     <div>
         <h2>{{ this.title }}</h2>
         <p>{{ counter }} <sup>2</sup> = {{ squareCounter }} </p>
+        <p data-test-counter="counter">{{ counter }}</p>
 
         <div>
-            <button @click="decrement">-1</button>
             <button @click="increment">+1</button>
+            <button @click="decrement">-1</button>
         </div>
     </div>
 </template>
@@ -14,13 +15,16 @@
 export default {
     name: 'Counter',
     props: {
-        title: String,
+        title: {
+            type: String,
+            default: 'Counter'
+        },
         start: {
             type: Number,
-            // required: true,
             default: 10,
+            // required: true,
             validator: function(value) {
-                return value >= 100
+                return value >= 0
             }
         }
     },
@@ -30,8 +34,7 @@ export default {
         }
     },
     methods: {
-        getSquareValue() {
-            // console.log('Get Square Value');
+        getSquareValue() {            
             return this.counter * this.counter
         },
         increment() {
@@ -43,8 +46,7 @@ export default {
     },
     // Computated Properties
     computed: {
-        squareCounter() {
-            // console.log('C. Square Counter');
+        squareCounter() {            
             return this.counter * this.counter
         },
         setTitle() {
