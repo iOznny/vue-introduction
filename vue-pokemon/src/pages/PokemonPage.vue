@@ -32,6 +32,10 @@ export default {
             this.pokemons = await getPokemosOptions();
             console.log(this.pokemons);
         }
+    },
+    // Lifecycle Hook
+    mounted() {        
+        this.mixPokemons();
     }
 }
 </script>
