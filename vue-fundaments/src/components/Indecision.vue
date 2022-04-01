@@ -29,23 +29,30 @@ export default {
         }
     },    
     methods: {
-        async getAnswer() {            
-            this.answer = 'Pensando...'
-
-            const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json()) 
-            console.log(answer);       
-            this.answer =  answer === 'yes' ? '¡Si!' : 
-                answer === 'no' ? '¡No!' : 'Tal vez';
-            this.imagen = image;
+        async getAnswer() {
+            try {                
+                this.answer = 'Pensando...'
+                const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json())                 
+    
+                this.answer =  answer === 'yes' ? '¡Si!' : answer === 'no' ? '¡No!' : 'Tal vez';
+                this.imagen = image;
+            } catch (error) {
+                this.answer = 'No se pudo cargar del API';  
+                this.imagen = null;
+                console.log('Indecision Component: ', error);
+            }
         }
     },
     // Observable o Watcher
     watch: {
         question(value, oldValue) {        
-            this.validQuestion = false;    
+            this.validQuestion = false;  
+
+            console.log({ value });  
             if (!value.includes('?')) return
 
             this.validQuestion = true;
+
             // TODO: Launch request to API
             this.getAnswer();
         }
