@@ -6,8 +6,7 @@
         <PokemonPicture v-bind:pokemonID="1" :showPokemon="true" />
 
         <!-- Options -->
-        <PokemonOptions />
-
+        <PokemonOptions :pokemons="pokemons" />
     </div>
 </template>
 
@@ -15,13 +14,24 @@
 import PokemonPicture from '@/components/PokemonPicture.vue';
 import PokemonOptions from '@/components/PokemonOptions.vue';
 
-import getPokemons from '@/helpers/getPokemosOptions';
-
+import getPokemosOptions from '@/helpers/getPokemosOptions';
+ 
 export default {
     name: 'PokemonPage',
     components: {
         PokemonPicture,
         PokemonOptions,
+    },
+    data() {
+        return {
+            pokemons: []
+        }
+    },
+    methods: {
+        async mixPokemons() {
+            this.pokemons = await getPokemosOptions();
+            console.log(this.pokemons);
+        }
     }
 }
 </script>
