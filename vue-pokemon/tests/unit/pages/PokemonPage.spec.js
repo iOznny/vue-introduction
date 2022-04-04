@@ -64,4 +64,25 @@ describe('Page - Pokemon Page', () => {
         expect(options.attributes('pokemons')).toBeTruthy();
     })
 
+    test('Testing with checkAnswer', async () => {
+        const wrapper = shallowMount(PokemonPage, {
+            data() {
+                return {
+                    pokemons: mockPokemons,
+                    pokemon: mockPokemons[0],
+                    showPokemon: false,
+                    showAnswer: false,
+                    message: ''
+                }
+            }
+        });
+
+        await wrapper.vm.checkAnswer(1);
+
+        expect(wrapper.find('h2').exists()).toBeTruthy();
+        expect(wrapper.vm.showPokemon).toBeTruthy();
+
+        await wrapper.vm.checkAnswer(1);
+        expect(wrapper.vm.message).toBe('¡Correcto! PIKACHU');
+    })
 })
