@@ -1,7 +1,7 @@
 import pokemonAPI from "@/api/pokemon.api";
 
 // Generate array with number from 0 to 650 Pokemons
-const getPokemons = () => {
+export const getPokemons = () => {
     const pokemons = Array.from(Array(650));
     return pokemons.map((_, i) => i + 1);
 };
@@ -17,7 +17,7 @@ const getPokemonsOptions = async () => {
 };
 
 // Get first 4 pokemons
-const getPokemonsNames = async ([a, b, c, d] = []) => {
+export const getPokemonsNames = async ([a, b, c, d] = []) => {
     const promises = [
         pokemonAPI.get(`/${ a }`),
         pokemonAPI.get(`/${ b }`),
